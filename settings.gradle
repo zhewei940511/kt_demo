@@ -3,6 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 dependencyResolutionManagement {
@@ -10,7 +11,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
+        //阿里云云效仓库：https://maven.aliyun.com/mvn/guide
+        maven { url 'https://maven.aliyun.com/repository/central' }
     }
 }
 rootProject.name = "kt_project"
 include ':app'
+include ':helper'
