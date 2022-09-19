@@ -1,5 +1,8 @@
 package com.example.kt_project.api
 
+import com.zhixinhuixue.zsyte.xxx.app.ext.mmkv
+import com.zhixinhuixue.zsyte.xxx.data.annotation.ValueKey
+import me.hgj.mvvmhelper.ext.getPhoneVersion
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
@@ -15,8 +18,11 @@ class HeadInterceptor : Interceptor{
     override fun intercept(chain: Interceptor.Chain): Response {
         val builder = chain.request().newBuilder()
         //模拟了2个公共参数
-        builder.addHeader("token", "token123456").build()
-        builder.addHeader("device", "Android").build()
+        builder.addHeader("token", mmkv.getString(ValueKey.userToken,"").toString()).build()//token
+        builder.addHeader("device", "xiaomi").build()
+        builder.addHeader("channel","cretin_open_api").build()
+        builder.addHeader("uk", getPhoneVersion()).build()
+        builder.addHeader("app","1.0.0;1;10").build()
         return chain.proceed(builder.build())
     }
 }

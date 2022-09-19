@@ -12,6 +12,8 @@ import com.example.kt_project.databinding.ActivityLoginBinding
 import com.example.kt_project.ext.initBack
 import com.example.kt_project.ui.viewmodel.LoginViewModel
 import com.hjq.toast.ToastUtils
+import com.zhixinhuixue.zsyte.xxx.app.ext.mmkv
+import com.zhixinhuixue.zsyte.xxx.data.annotation.ValueKey
 import me.hgj.mvvmhelper.ext.*
 import me.hgj.mvvmhelper.net.LoadStatusEntity
 
@@ -36,50 +38,53 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
 
     override fun onRequestError(loadStatus: LoadStatusEntity) {
 
-        when(loadStatus.errorCode)
-        {
-
+        when (loadStatus.requestCode) {
+            NetUrl.LOGIN -> {
+                //是登录接口 ，弹窗提示错误消息
+                showDialogMessage(
+                    loadStatus.errorMessage,
+                    "温馨提示",
+                    "确定"
+                )
+            }
         }
-//        when (loadStatus.requestCode) {
-//
-////            NetUrl.LOGIN -> {
-////                //是登录接口 ，弹窗提示错误消息
-////
-////                showDialogMessage(loadStatus.errorMessage)
-////            }
-//        }
     }
 
     override fun onBindViewClick() {
         setOnclick(mBind.ivLogin, mBind.tvForgetpwd)
         {
-            when(it)
-            {
+            when (it) {
                 //登录界面
-                mBind.ivLogin->{
-                    when{
-                        mBind.etLoginphone.isEmpty()->ToastUtils.show("手机号不能为空")
-                        mBind.etLoginpwd.isEmpty()->ToastUtils.show("密码不能为空")
-                        else->
-                        {
-                            mViewModel.loginapp(mBind.etLoginphone.textString(), mBind.etLoginpwd.textString())
-//                            mViewModel.loginapp(mBind.loginPhone.textString(), mBind.loginPwd.textString())?.observe(this){
-//                                //请求成功  可以做保存信息等操作 ....
-//
-//                                LiveDataEvent.loginEvent.value = true //通知登录成功
-//                                finish()
-//                            }
+                mBind.ivLogin -> {
+                    when {
+                        mBind.etLoginphone.isEmpty() -> ToastUtils.show("手机号不能为空")
+                        mBind.etLoginpwd.isEmpty() -> ToastUtils.show("密码不能为空")
+                        else -> {
+//                            mViewModel.loginapp(
+//                                mBind.etLoginphone.textString(),
+//                                mBind.etLoginpwd.textString(),
+//                            )
+                            mViewModel.loginCallBack(
+                                mBind.etLoginphone.textString(),
+                                mBind.etLoginpwd.textString()
+                            )?.observe(this) {
+                                //请求成功  可以做保存信息等操作 ....
+                                mmkv.putString(ValueKey.userToken,it.token)//保存token
+                                LiveDataEvent.loginEvent.value = true //通知登录成功
+                                finish()
+                            }
                         }
                     }
                 }
                 //忘记密码点击事件
-                mBind.tvForgetpwd->{
+                mBind.tvForgetpwd -> {
                     ToastUtils.show("点击了忘记密码")
                 }
             }
 
         }
     }
+
     //是否显示标题
     override fun showToolBar(): Boolean {
         return false;

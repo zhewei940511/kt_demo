@@ -11,8 +11,9 @@ object NetUrl {
     // 服务器请求成功的 Code值
     const val SUCCESS_CODE = 200
 //    http://fenzijia.com/app/
+//    http://tools.cretinzp.com/jokes
     @DefaultDomain//默认域名
-    const val DEV_URL="http://fenzijia.com/app/";
-    //登录
-    const val LOGIN="user/login";
+    const val DEV_URL="http://tools.cretinzp.com/jokes";
+    //验证码登录
+    const val LOGIN="user/login/code";
 }

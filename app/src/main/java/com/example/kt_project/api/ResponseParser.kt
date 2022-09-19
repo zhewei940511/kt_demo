@@ -1,7 +1,11 @@
 package com.example.kt_project.api
 
+import android.app.ActivityManager
+import android.content.pm.ActivityInfo
 import com.example.kt_project.data.response.ApiPagerResponse
 import com.example.kt_project.data.response.ApiResponse
+import com.example.kt_project.ui.activity.LoginActivity
+import me.hgj.mvvmhelper.ext.toStartActivity
 import me.hgj.mvvmhelper.net.BaseNetConstant
 import rxhttp.wrapper.annotation.Parser
 import rxhttp.wrapper.entity.ParameterizedTypeImpl
@@ -59,13 +63,12 @@ open class ResponseParser<T> : AbstractParser<T> {
         if (tData != null) {
             //如果返回值值列表封装类，且是第一页并且空数据 那么给空异常 让界面显示空
             if (tData.isRefresh() && tData.isEmpty()) {
-                throw ParseException(BaseNetConstant.EMPTY_CODE, data.errorMsg, response)
+                throw ParseException(BaseNetConstant.EMPTY_CODE, data.msg, response)
             }
         }
-
         // errCode 不等于 SUCCESS_CODE，抛出异常
-        if (data.errorCode != NetUrl.SUCCESS_CODE) {
-            throw ParseException(data.errorCode.toString(), data.errorMsg, response)
+        if (data.code != NetUrl.SUCCESS_CODE) {
+            throw ParseException(data.code.toString(), data.msg, response)
         }
         return t
     }

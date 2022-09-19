@@ -6,7 +6,10 @@ package com.example.kt_project.data.response
  * 描述　: 玩Android 服务器返回的数据基类
  */
 data class ApiResponse<T>(
+//    var data: T,
+//    var errorCode: Int = -1,
+//    var errorMsg: String = ""
     var data: T,
-    var errorCode: Int = -1,
-    var errorMsg: String = ""
+    var code: Int = -1,
+    var msg: String = ""
 )

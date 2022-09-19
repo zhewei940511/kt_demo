@@ -6,6 +6,7 @@ import com.example.kt_project.data.repository.UserRepository
 import com.example.kt_project.entity.LoginUserinfo
 import me.hgj.mvvmhelper.base.BaseViewModel
 import me.hgj.mvvmhelper.ext.rxHttpRequest
+import me.hgj.mvvmhelper.ext.rxHttpRequestCallBack
 import me.hgj.mvvmhelper.net.LoadingType
 
 /**
@@ -23,10 +24,21 @@ class LoginViewModel : BaseViewModel() {
      */
     fun loginapp(phoneNumber: String, password: String) {
         rxHttpRequest {
-            onRequest = { loginData.value = UserRepository.login(phoneNumber, password).await() }
+            onRequest = { loginData.value = UserRepository.login(phoneNumber, password).await()
+            }
             loadingType = LoadingType.LOADING_DIALOG
             loadingMessage = "正在登录"
             requestCode = NetUrl.LOGIN
+        }
+    }
+    fun loginCallBack(phoneNumber: String, password: String):MutableLiveData<LoginUserinfo>? {
+        return rxHttpRequestCallBack {
+            onRequest = {
+                iAwaitLiveData?.value = UserRepository.login(phoneNumber,password).await()
+            }
+            loadingType = LoadingType.LOADING_DIALOG //选传 默认为 LoadingType.LOADING_NULL
+            loadingMessage = "正在登录中....." // 选传
+            requestCode = NetUrl.LOGIN // 选传，如果要判断接口错误业务的话必传
         }
     }
 }

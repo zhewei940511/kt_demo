@@ -1,149 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@android:color/white</item>
-        <item name="colorPrimaryDark">@android:color/white</item>
-        <!--        <item name="colorAccent">@color/main</item>-->
-        <item name="android:windowBackground">@color/white</item>
-
-        <item name="buttonBarNegativeButtonStyle">@style/negativeButtonStyle</item>
-        <item name="buttonBarPositiveButtonStyle">@style/positiveButtonStyle</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <!-- 设置activity切换动画 -->
+        <item name="android:windowAnimationStyle">@style/activityAnimation</item>
     </style>
-
-    <style name="negativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/black_1A1A1A</item>
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowBackground">@mipmap/ic_back</item>
     </style>
-
-    <style name="positiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/blue_055BF3</item>
+    <style name="activityAnimation" parent="@android:style/Animation">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
-    <!--顶部导航-->
-    <declare-styleable name="TopView">
-        <attr name="topview_title" format="string" />
-        <attr name="topview_left" format="reference" />
-        <attr name="topview_right" format="reference" />
-        <attr name="topview_righttitle" format="string" />
-    </declare-styleable>
-
-    <style name="loading_dialog" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item><!--边框-->
-        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
-        <item name="android:windowIsTranslucent">false</item><!--半透明-->
-        <item name="android:windowNoTitle">true</item><!--无标题-->
-        <item name="android:windowBackground">@android:color/transparent
-        </item><!--背景透明   去掉背景色边框也就去掉了-->
-        <item name="android:backgroundDimEnabled">false</item><!--模糊-->
-    </style>
-    <!--    支付密码弹窗开始-->
-    <!-- 分割线 -->
-<!--    <style name="style_separate_line">-->
-<!--        <item name="android:layout_width">match_parent</item>-->
-<!--        <item name="android:layout_height">@dimen/divider_height</item>-->
-<!--        <item name="android:background">@color/gray_line</item>-->
-<!--    </style>-->
-
-<!--    <declare-styleable name="PayPwdView">-->
-<!--        <attr name="count" format="integer" />-->
-<!--        <attr name="border_color" format="color" />-->
-<!--        <attr name="dot_color" format="color" />-->
-<!--    </declare-styleable>-->
-<!--    &lt;!&ndash;    输入键盘样式&ndash;&gt;-->
-<!--    <style name="layout_input_amount_style">-->
-<!--        <item name="android:layout_width">match_parent</item>-->
-<!--        <item name="android:layout_height">55dp</item>-->
-<!--        <item name="android:layout_marginBottom">2px</item>-->
-<!--        <item name="android:gravity">center</item>-->
-<!--        <item name="android:orientation">horizontal</item>-->
-<!--    </style>-->
-<!--    &lt;!&ndash;键盘数字&ndash;&gt;-->
-<!--    <style name="btn_input_num_style">-->
-<!--        <item name="android:layout_width">0dp</item>-->
-<!--        <item name="android:layout_height">match_parent</item>-->
-<!--        <item name="android:layout_weight">1</item>-->
-<!--        <item name="android:gravity">center</item>-->
-<!--        <item name="android:textSize">25sp</item>-->
-<!--        <item name="android:textColor">@color/black_text</item>-->
-<!--        <item name="android:background">@drawable/selector_item_pressed</item>-->
-<!--    </style>-->
-<!--    &lt;!&ndash;底部弹框&ndash;&gt;-->
-<!--    <style name="BottomDialog" parent="@style/Theme.AppCompat">-->
-<!--        <item name="android:layout_width">match_parent</item>-->
-<!--        <item name="android:layout_height">wrap_content</item>-->
-<!--        <item name="android:windowIsFloating">true</item>-->
-<!--        <item name="android:backgroundDimEnabled">true</item>-->
-<!--        <item name="android:windowBackground">@android:color/transparent-->
-<!--        </item>&lt;!&ndash;背景透明   去掉背景色边框也就去掉了&ndash;&gt;-->
-<!--    </style>-->
-<!--    &lt;!&ndash; 黑色正常大小的文字 &ndash;&gt;-->
-<!--    <style name="style_black_normal_text">-->
-<!--        <item name="android:textColor">@color/black_text</item>-->
-<!--        <item name="android:textSize">@dimen/font_normal</item>-->
-<!--        <item name="android:paddingRight">@dimen/spacing_tiny</item>-->
-<!--        <item name="android:includeFontPadding">false</item>-->
-<!--    </style>-->
-
-<!--    <style name="AnimBottom" parent="@android:style/Animation">-->
-<!--        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>-->
-<!--        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>-->
-<!--    </style>-->
-<!--    &lt;!&ndash;    支付密码弹窗结束&ndash;&gt;-->
-<!--    <style name="DialogStyle_Dark_Background" parent="Theme.AppCompat.Light.Dialog">-->
-<!--        &lt;!&ndash; 设置完全透明 &ndash;&gt;-->
-<!--        <item name="android:windowBackground">@android:color/transparent</item>-->
-<!--        &lt;!&ndash; 设置无边框 &ndash;&gt;-->
-<!--        &lt;!&ndash; <item name="android:windowFrame">@null</item> &ndash;&gt;-->
-<!--        &lt;!&ndash; 设置无标题 &ndash;&gt;-->
-<!--        <item name="android:windowNoTitle">true</item>-->
-<!--        &lt;!&ndash; 设置为浮动窗口 &ndash;&gt;-->
-<!--        <item name="android:windowIsFloating">true</item>-->
-<!--        <item name="android:windowIsTranslucent">false</item>-->
-<!--        <item name="android:windowContentOverlay">@null</item>-->
-<!--        &lt;!&ndash; 设置动画 &ndash;&gt;-->
-<!--        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>-->
-<!--        &lt;!&ndash; 设置屏幕变暗 &ndash;&gt;-->
-<!--        <item name="android:backgroundDimEnabled">true</item>-->
-<!--    </style>-->
-
-<!--    &lt;!&ndash;    地图弹窗样式&ndash;&gt;-->
-<!--    <style name="MapDialogTheme" parent="@android:style/Theme.Dialog">-->
-<!--        &lt;!&ndash; 边框 &ndash;&gt;-->
-<!--        <item name="android:windowFrame">@null</item>-->
-<!--        &lt;!&ndash; 是否浮现在activity之上 &ndash;&gt;-->
-<!--        <item name="android:windowIsFloating">true</item>-->
-<!--        &lt;!&ndash; 半透明 &ndash;&gt;-->
-<!--        <item name="android:windowIsTranslucent">true</item>-->
-<!--        &lt;!&ndash; 无标题 &ndash;&gt;-->
-<!--        <item name="android:windowNoTitle">true</item>-->
-
-<!--        <item name="android:background">@android:color/transparent</item>-->
-<!--        &lt;!&ndash; 背景透明 &ndash;&gt;-->
-<!--        <item name="android:windowBackground">@android:color/transparent</item>&ndash;&gt;-->
-<!--        &lt;!&ndash; 模糊 &ndash;&gt;-->
-<!--        <item name="android:backgroundDimEnabled">true</item>-->
-<!--        &lt;!&ndash; 遮罩层 &ndash;&gt;-->
-<!--        <item name="android:backgroundDimAmount">0.5</item>-->
-<!--    </style>-->
-
-<!--    <style name="main_menu_animStyle">-->
-<!--        <item name="android:windowEnterAnimation">@anim/dialog_in_anim</item>-->
-<!--        <item name="android:windowExitAnimation">@anim/dialog_out_anim</item>-->
-<!--    </style>-->
-<!--    &lt;!&ndash;    会员开通协议&ndash;&gt;-->
-<!--    <style name="Vipcheck" parent="@android:style/Widget.CompoundButton.CheckBox">-->
-<!--        <item name="android:layout_width">20dp</item>-->
-<!--        <item name="android:layout_height">20dp</item>-->
-<!--        <item name="android:background">@null</item>-->
-<!--        <item name="buttonCompat">@null</item>-->
-<!--        <item name="android:button">@drawable/selector_vip_checked_background</item>-->
-<!--    </style>-->
-<!--&lt;!&ndash;   积分赠送 &ndash;&gt;-->
-<!--    <style name="Integralcodecheck" parent="@android:style/Widget.CompoundButton.CheckBox">-->
-<!--        <item name="android:layout_width">20dp</item>-->
-<!--        <item name="android:layout_height">20dp</item>-->
-<!--        <item name="android:background">@null</item>-->
-<!--        <item name="buttonCompat">@null</item>-->
-<!--        <item name="android:button">@drawable/selector_vip_checked_background</item>-->
-<!--    </style>-->
 </resources>
