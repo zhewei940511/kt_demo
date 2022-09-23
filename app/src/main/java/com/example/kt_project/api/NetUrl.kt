@@ -13,7 +13,7 @@ object NetUrl {
 //    http://fenzijia.com/app/
 //    http://tools.cretinzp.com/jokes
     @DefaultDomain//默认域名
-    const val DEV_URL="http://tools.cretinzp.com/jokes";
+    const val DEV_URL="http://api.hls.seevin.com";
     //验证码登录
-    const val LOGIN="user/login/code";
+    const val LOGIN="/business/student/loginIn";
 }

@@ -18,8 +18,8 @@ object UserRepository {
      */
     fun login(phone:String,pwd:String): Await<LoginUserinfo> {
         return RxHttp.postForm(NetUrl.LOGIN)
-            .add("phone", phone)
-            .add("pwd", pwd)
+            .add("telephone", phone)
+            .add("userPwd", pwd)
             .toResponse();
     }
 }

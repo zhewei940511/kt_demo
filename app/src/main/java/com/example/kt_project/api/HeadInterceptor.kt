@@ -18,11 +18,16 @@ class HeadInterceptor : Interceptor{
     override fun intercept(chain: Interceptor.Chain): Response {
         val builder = chain.request().newBuilder()
         //模拟了2个公共参数
-        builder.addHeader("token", mmkv.getString(ValueKey.userToken,"").toString()).build()//token
-        builder.addHeader("device", "xiaomi").build()
-        builder.addHeader("channel","cretin_open_api").build()
-        builder.addHeader("uk", getPhoneVersion()).build()
-        builder.addHeader("app","1.0.0;1;10").build()
+//        builder.addHeader("token", mmkv.getString(ValueKey.userToken,"").toString()).build()//token
+//        builder.addHeader("device", "xiaomi").build()
+//        builder.addHeader("channel","cretin_open_api").build()
+//        builder.addHeader("uk", getPhoneVersion()).build()
+//        builder.addHeader("app","1.0.0;1;10").build()
+        builder.addHeader("token", "")//token
+        builder.addHeader("device", "").build()
+        builder.addHeader("channel","").build()
+        builder.addHeader("uk", "").build()
+        builder.addHeader("app","").build()
         return chain.proceed(builder.build())
     }
 }
