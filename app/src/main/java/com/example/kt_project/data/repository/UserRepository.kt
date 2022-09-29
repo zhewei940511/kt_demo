@@ -2,6 +2,7 @@ package com.example.kt_project.data.repository
 
 import com.example.kt_project.api.NetUrl
 import com.example.kt_project.entity.LoginUserinfo
+import com.example.kt_project.util.MD5Util
 import rxhttp.wrapper.coroutines.Await
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toResponse
@@ -19,7 +20,7 @@ object UserRepository {
     fun login(phone:String,pwd:String): Await<LoginUserinfo> {
         return RxHttp.postForm(NetUrl.LOGIN)
             .add("telephone", phone)
-            .add("userPwd", pwd)
+            .add("userPwd",pwd)
             .toResponse();
     }
 }

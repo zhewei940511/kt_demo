@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.kt_project.api.NetUrl
 import com.example.kt_project.data.repository.UserRepository
 import com.example.kt_project.entity.LoginUserinfo
+import com.example.kt_project.util.MD5Util
 import me.hgj.mvvmhelper.base.BaseViewModel
 import me.hgj.mvvmhelper.ext.rxHttpRequest
 import me.hgj.mvvmhelper.ext.rxHttpRequestCallBack
@@ -34,7 +35,7 @@ class LoginViewModel : BaseViewModel() {
     fun loginCallBack(phoneNumber: String, password: String):MutableLiveData<LoginUserinfo>? {
         return rxHttpRequestCallBack {
             onRequest = {
-                iAwaitLiveData?.value = UserRepository.login(phoneNumber,password).await()
+                iAwaitLiveData?.value = UserRepository.login(phoneNumber,MD5Util.MD5Lower(password)).await()
             }
             loadingType = LoadingType.LOADING_DIALOG //选传 默认为 LoadingType.LOADING_NULL
             loadingMessage = "正在登录中....." // 选传
