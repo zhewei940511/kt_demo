@@ -10,6 +10,6 @@ data class ApiResponse<T>(
 //    var errorCode: Int = -1,
 //    var errorMsg: String = ""
     var data: T,
-    var code: Int = -1,
+    var code: Int = 200,
     var msg: String = ""
 )

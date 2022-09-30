@@ -51,7 +51,7 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
     }
 
     override fun onBindViewClick() {
-        setOnclick(mBind.ivLogin, mBind.tvForgetpwd)
+        setOnclick(mBind.ivLogin, mBind.tvForgetpwd,mBind.tvRegistered)
         {
             when (it) {
                 //登录界面
@@ -60,10 +60,6 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                         mBind.etLoginphone.isEmpty() -> ToastUtils.show("手机号不能为空")
                         mBind.etLoginpwd.isEmpty() -> ToastUtils.show("密码不能为空")
                         else -> {
-//                            mViewModel.loginapp(
-//                                mBind.etLoginphone.textString(),
-//                                mBind.etLoginpwd.textString(),
-//                            )
                             mViewModel.loginCallBack(
                                 mBind.etLoginphone.textString(),
                                 mBind.etLoginpwd.textString()
@@ -79,6 +75,10 @@ class LoginActivity : BaseActivity<LoginViewModel, ActivityLoginBinding>() {
                 //忘记密码点击事件
                 mBind.tvForgetpwd -> {
                     ToastUtils.show("点击了忘记密码")
+                }
+                //注册界面
+                mBind.tvRegistered->{
+                    toStartActivity(RegisterActivity::class.java)
                 }
             }
 

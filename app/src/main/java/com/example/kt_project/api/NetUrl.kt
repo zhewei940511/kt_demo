@@ -16,4 +16,6 @@ object NetUrl {
     const val DEV_URL="http://api.hls.seevin.com";
     //验证码登录
     const val LOGIN="/business/student/loginIn";
+    //获取验证码
+    const val GETCODE="/business/student/sendMsgCode";
 }

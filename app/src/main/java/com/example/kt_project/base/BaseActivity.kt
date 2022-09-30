@@ -27,6 +27,7 @@ abstract class BaseActivity<VM:BaseViewModel,VB:ViewBinding>: BaseVBActivity<VM,
     override fun initImmersionBar() {
         //设置共同沉浸式样式
         if (showToolBar()) {
+            //默认toolbar主体色为系统设置得
             mToolbar.setBackgroundResource(R.color.colorPrimary)
             ImmersionBar.with(this).titleBar(mToolbar).init()
         }

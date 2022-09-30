@@ -1,6 +1,7 @@
 package com.example.kt_project.data.repository
 
 import com.example.kt_project.api.NetUrl
+import com.example.kt_project.data.response.ApiResponse
 import com.example.kt_project.entity.LoginUserinfo
 import com.example.kt_project.util.MD5Util
 import rxhttp.wrapper.coroutines.Await
@@ -17,10 +18,18 @@ object UserRepository {
     /**
      * 登录
      */
-    fun login(phone:String,pwd:String): Await<LoginUserinfo> {
+    fun login(phone: String, pwd: String): Await<LoginUserinfo> {
         return RxHttp.postForm(NetUrl.LOGIN)
             .add("telephone", phone)
-            .add("userPwd",pwd)
+            .add("userPwd", pwd)
             .toResponse();
+    }
+
+    /**
+     * 获取验证码
+     */
+    fun getcode(telephone: String, type: Int): Await<ApiResponse<Any>> {
+        return RxHttp.postForm(NetUrl.GETCODE)
+            .add("telephone", telephone).add("type", type).toResponse();
     }
 }
